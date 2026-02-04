@@ -32,8 +32,10 @@ func main() {
 	pokemonData := fetchPokemonData(dexIdStr)
 	pokemonSpeciesData := fetchPokemonSpeciesData(dexIdStr)
 
+	weightKg := float64(pokemonData.Weight) / 10.0
+
 	name := getEnglishName(pokemonSpeciesData.Names)
-	weight := fmt.Sprintf("%dkg", pokemonData.Weight)
+	weight := fmt.Sprintf("%.1fkg", weightKg)
 	height := fmt.Sprintf("%.1fm", float32(pokemonData.Height)/10)
 	genus := getEnglishGenus(pokemonSpeciesData.Genera)
 	flavorText := getEnglishFlavorText(pokemonSpeciesData.FlavorTextEntries)

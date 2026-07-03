@@ -9,26 +9,30 @@ import (
 )
 
 func getEnglishName(names []PokemonSpeciesName) string {
+  return getLocalizedName(names, "en")
+}
+
+func getLocalizedName(names []PokemonSpeciesName, locale string) string {
 	for _, name := range names {
-		if name.Language.Name == "en" {
+		if name.Language.Name == locale {
 			return name.Name
 		}
 	}
 	return ""
 }
 
-func getEnglishGenus(genera []PokemonSpeciesGenera) string {
+func getLocalizedGenus(genera []PokemonSpeciesGenera, locale string) string {
 	for _, genus := range genera {
-		if genus.Language.Name == "en" {
+		if genus.Language.Name == locale {
 			return genus.Genus
 		}
 	}
 	return ""
 }
 
-func getEnglishFlavorText(entries []PokemonSpeciesFlavorText) string {
+func getLocalizedFlavorText(entries []PokemonSpeciesFlavorText, locale string) string {
 	for i := len(entries) - 1; i >= 0; i-- {
-		if entries[i].Language.Name == "en" {
+		if entries[i].Language.Name == locale {
 			return strings.ReplaceAll(entries[i].FlavorText, "\n", " ")
 		}
 	}

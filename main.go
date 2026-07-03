@@ -13,12 +13,14 @@ func main() {
 	pokemonID := flag.Int("id", 0, "Pokémon ID to fetch. If not provided, a random ID will be used.")
 	pokemonName := flag.String("name", "", "Pokémon name to fetch. If not provided, a random Pokémon will be used.")
 	shinyFlag := flag.Float64("shiny", 0.5, "Odds of the Pokémon being shiny. Default is 0.5.")
+	localeFlag := flag.String("locale", "en", "Locale to fetch the pokemon name and flavor text for, default is 'en'")
 
 	flag.Parse()
 
 	dexId := *pokemonID
 	pokeName := *pokemonName
 	shinyOdds := *shinyFlag
+	locale := *localeFlag
 
 	if dexId == 0 {
 		if pokeName == "" || !isValidPokemonName(pokeName) {
@@ -35,10 +37,11 @@ func main() {
 	weightKg := float64(pokemonData.Weight) / 10.0
 
 	name := getEnglishName(pokemonSpeciesData.Names)
+	localeName := getLocalizedName(pokemonSpeciesData.Names, locale)
 	weight := fmt.Sprintf("%.1fkg", weightKg)
 	height := fmt.Sprintf("%.1fm", float32(pokemonData.Height)/10)
-	genus := getEnglishGenus(pokemonSpeciesData.Genera)
-	flavorText := getEnglishFlavorText(pokemonSpeciesData.FlavorTextEntries)
+	genus := getLocalizedGenus(pokemonSpeciesData.Genera, locale)
+	flavorText := getLocalizedFlavorText(pokemonSpeciesData.FlavorTextEntries, locale)
 	typeBadges := getTypeBadges(pokemonData.Types)
 	isShiny := rollShiny(shinyOdds)
 
@@ -48,7 +51,7 @@ func main() {
 	pokemonImageURL := fmt.Sprintf("https://gitlab.com/phoneybadger/pokemon-colorscripts/-/raw/main/colorscripts/small/%s/%s", getShinyOrRegular(isShiny), strings.ToLower(name))
 
 	pokemonImage := fetchPokemonImage(pokemonImageURL)
-	pokemonInfo := formatPokemonInfo(dexBadge, name, genus, typeBadges, height, weight, flavorText, mainColor)
+	pokemonInfo := formatPokemonInfo(dexBadge, localeName, genus, typeBadges, height, weight, flavorText, mainColor)
 
 	output := lipgloss.JoinHorizontal(
 		lipgloss.Top,

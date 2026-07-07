@@ -4,6 +4,26 @@ type PokemonGeneralData struct {
 	Name string `json:"name"`
 }
 
+type PokemonTypeData struct {
+  Name string `json:"name"`
+  Url string `json:"url"`
+}
+
+type PokemonTypeRequestData struct {
+  Name string `json:"name"`
+  LocalizedNames []PokemonLocaleData `json:"names"`
+}
+
+type PokemonLocaleData struct {
+  Language Language `json:"language"`
+  Name string `json:"name"`
+}
+
+type Language struct {
+  Name string `json:"name"`
+  Url string `json:"url"`
+}
+
 type PokemonType struct {
 	TypeData PokemonGeneralData `json:"type"`
 }

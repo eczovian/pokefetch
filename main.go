@@ -33,6 +33,11 @@ func main() {
 	dexIdStr := fmt.Sprintf("%d", dexId)
 	pokemonData := fetchPokemonData(dexIdStr)
 	pokemonSpeciesData := fetchPokemonSpeciesData(dexIdStr)
+  var pokeTypes []PokemonTypeRequestData
+  for _, t := range pokemonData.Types {
+    pokeTypes = append(pokeTypes, fetchPokemonTypeData(t.TypeData.Name))
+  }
+
 
 	weightKg := float64(pokemonData.Weight) / 10.0
 
@@ -42,13 +47,17 @@ func main() {
 	height := fmt.Sprintf("%.1fm", float32(pokemonData.Height)/10)
 	genus := getLocalizedGenus(pokemonSpeciesData.Genera, locale)
 	flavorText := getLocalizedFlavorText(pokemonSpeciesData.FlavorTextEntries, locale)
-	typeBadges := getTypeBadges(pokemonData.Types)
+	typeBadges := getLocalizedTypeBadges(pokeTypes,locale)
 	isShiny := rollShiny(shinyOdds)
 
 	mainColor := getShinyOrRegularColor(isShiny)
 	dexBadge := createTextBadge(fmt.Sprintf("No.%03d", dexId), mainColor, true)
 
-	pokemonImageURL := fmt.Sprintf("https://gitlab.com/phoneybadger/pokemon-colorscripts/-/raw/main/colorscripts/small/%s/%s", getShinyOrRegular(isShiny), strings.ToLower(name))
+  // we must do some truncation with the english pokemon name to ensure the image is correctly loaded
+  name = strings.ReplaceAll(strings.ToLower(name)," ","-")
+  name = strings.ReplaceAll(name, ".", "")
+
+	pokemonImageURL := fmt.Sprintf("https://gitlab.com/phoneybadger/pokemon-colorscripts/-/raw/main/colorscripts/small/%s/%s", getShinyOrRegular(isShiny), name)
 
 	pokemonImage := fetchPokemonImage(pokemonImageURL)
 	pokemonInfo := formatPokemonInfo(dexBadge, localeName, genus, typeBadges, height, weight, flavorText, mainColor)

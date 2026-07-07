@@ -39,6 +39,19 @@ func getLocalizedFlavorText(entries []PokemonSpeciesFlavorText, locale string) s
 	return ""
 }
 
+func getLocalizedTypeBadges(entries []PokemonTypeRequestData, locale string) string{
+  var badges []string;
+  for i:= len(entries) -1; i >= 0; i--{
+    for j:= len(entries[i].LocalizedNames) -1; j >=0; j--{
+      if(entries[i].LocalizedNames[j].Language.Name == locale) {
+        color := pokemonTypeColor(entries[i].Name)
+        badges = append(badges, createTextBadge(entries[i].LocalizedNames[j].Name,color,false))
+      }
+    }
+  }
+  return strings.Join(badges, " ")
+}
+
 func getTypeBadges(types []PokemonType) string {
 	var badges []string
 	for _, t := range types {

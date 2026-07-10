@@ -12,6 +12,24 @@ func getEnglishName(names []PokemonSpeciesName) string {
   return getLocalizedName(names, "en")
 }
 
+func getLocalizedHeight(localeData OuterLocaleData, locale string) string{
+  for _, name := range localeData.Height.Names {
+    if name.Language.Name == locale {
+      return name.Name
+    }
+  }
+  return ""
+}
+
+func getLocalizedWeight(localeData OuterLocaleData, locale string) string{
+  for _, name := range localeData.Weight.Names {
+    if name.Language.Name == locale {
+      return name.Name
+    }
+  }
+  return ""
+}
+
 func getLocalizedName(names []PokemonSpeciesName, locale string) string {
 	for _, name := range names {
 		if name.Language.Name == locale {
@@ -115,9 +133,9 @@ func rollShiny(chance float64) bool {
 	return rand.Float64() < chance
 }
 
-func formatPokemonInfo(dexBadge, name, genus, typeBadges, height, weight, flavorText string, mainColor lipgloss.Color) string {
+func formatPokemonInfo(dexBadge, name, genus, typeBadges, height, heightLabel, weight, weightLabel, flavorText string, mainColor lipgloss.Color) string {
 	title := formatTitle(dexBadge, name, genus, mainColor)
-	details := formatDetails(height, weight)
+	details := formatDetails(height, heightLabel, weight, weightLabel)
 	flavorTextBox := formatFlavorText(flavorText)
 
 	return lipgloss.JoinVertical(
@@ -139,11 +157,11 @@ func formatTitle(dexBadge, name, genus string, mainColor lipgloss.Color) string 
 	return dexBadge + lipgloss.NewStyle().Bold(true).Foreground(mainColor).Render(fmt.Sprintf(" %s - %s", name, genus))
 }
 
-func formatDetails(height, weight string) string {
+func formatDetails(height, heightLabel, weight, weightLabel string) string {
 	return lipgloss.JoinHorizontal(
 		lipgloss.Top,
-		lipgloss.NewStyle().Foreground(lipgloss.Color("15")).Render("Height: "+lipgloss.NewStyle().Bold(true).Render(height)),
-		lipgloss.NewStyle().Foreground(lipgloss.Color("15")).Render("	Weight: "+lipgloss.NewStyle().Bold(true).Render(weight)),
+		lipgloss.NewStyle().Foreground(lipgloss.Color("15")).Render(heightLabel+": "+lipgloss.NewStyle().Bold(true).Render(height)),
+		lipgloss.NewStyle().Foreground(lipgloss.Color("15")).Render("	"+weightLabel+": "+lipgloss.NewStyle().Bold(true).Render(weight)),
 	)
 }
 

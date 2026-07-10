@@ -41,8 +41,11 @@ func main() {
 
 	weightKg := float64(pokemonData.Weight) / 10.0
 
+  parsedLocale := parseDataLocaleWeightAndHeightData()
 	name := getEnglishName(pokemonSpeciesData.Names)
 	localeName := getLocalizedName(pokemonSpeciesData.Names, locale)
+  localizedWeightlabel := getLocalizedWeight(parsedLocale, locale)
+  localizedHeightlabel := getLocalizedHeight(parsedLocale, locale)
 	weight := fmt.Sprintf("%.1fkg", weightKg)
 	height := fmt.Sprintf("%.1fm", float32(pokemonData.Height)/10)
 	genus := getLocalizedGenus(pokemonSpeciesData.Genera, locale)
@@ -60,7 +63,7 @@ func main() {
 	pokemonImageURL := fmt.Sprintf("https://gitlab.com/phoneybadger/pokemon-colorscripts/-/raw/main/colorscripts/small/%s/%s", getShinyOrRegular(isShiny), name)
 
 	pokemonImage := fetchPokemonImage(pokemonImageURL)
-	pokemonInfo := formatPokemonInfo(dexBadge, localeName, genus, typeBadges, height, weight, flavorText, mainColor)
+	pokemonInfo := formatPokemonInfo(dexBadge, localeName, genus, typeBadges, height, localizedHeightlabel, weight, localizedWeightlabel, flavorText, mainColor)
 
 	output := lipgloss.JoinHorizontal(
 		lipgloss.Top,

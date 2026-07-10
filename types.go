@@ -5,23 +5,23 @@ type PokemonGeneralData struct {
 }
 
 type PokemonTypeData struct {
-  Name string `json:"name"`
-  Url string `json:"url"`
+	Name string `json:"name"`
+	Url  string `json:"url"`
 }
 
 type PokemonTypeRequestData struct {
-  Name string `json:"name"`
-  LocalizedNames []PokemonLocaleData `json:"names"`
+	Name           string              `json:"name"`
+	LocalizedNames []PokemonLocaleData `json:"names"`
 }
 
 type PokemonLocaleData struct {
-  Language Language `json:"language"`
-  Name string `json:"name"`
+	Language Language `json:"language"`
+	Name     string   `json:"name"`
 }
 
 type Language struct {
-  Name string `json:"name"`
-  Url string `json:"url"`
+	Name string `json:"name"`
+	Url  string `json:"url"`
 }
 
 type PokemonType struct {
@@ -54,4 +54,13 @@ type PokemonSpeciesData struct {
 	Names             []PokemonSpeciesName       `json:"names"`
 	Genera            []PokemonSpeciesGenera     `json:"genera"`
 	FlavorTextEntries []PokemonSpeciesFlavorText `json:"flavor_text_entries"`
+}
+
+type LocaleData struct {
+	Names []PokemonLocaleData `json:"names"`
+}
+
+type OuterLocaleData struct {
+	Height LocaleData `json:"height"`
+	Weight LocaleData `json:"weight"`
 }

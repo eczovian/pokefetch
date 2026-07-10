@@ -1,0 +1,164 @@
+{
+  "weight": {
+    "names": [
+      {
+        "language": {
+          "name": "ja-hrkt",
+          "url": ""
+        },
+        "name": "おもさ"
+      },
+      {
+        "language": {
+          "name": "ko",
+          "url": ""
+        },
+        "name": "무게"
+      },
+      {
+        "language": {
+          "name": "zh-hant",
+          "url": ""
+        },
+        "name": "重量"
+      },
+      {
+        "language": {
+          "name": "fr",
+          "url": ""
+        },
+        "name": "Poids"
+      },
+      {
+        "language": {
+          "name": "de",
+          "url": ""
+        },
+        "name": "Gewicht"
+      },
+      {
+        "language": {
+          "name": "es",
+          "url": ""
+        },
+        "name": "Peso"
+      },
+      {
+        "language": {
+          "name": "it",
+          "url": ""
+        },
+        "name": "Peso"
+      },
+      {
+        "language": {
+          "name": "en",
+          "url": ""
+        },
+        "name": "Weight"
+      },
+      {
+        "language": {
+          "name": "ja",
+          "url": ""
+        },
+        "name": "重さ"
+      },
+      {
+        "language": {
+          "name": "zh-hans",
+          "url": ""
+        },
+        "name": "重量"
+      },
+      {
+        "language": {
+          "name": "es-419",
+          "url": ""
+        },
+        "name": "Peso"
+      }
+    ]
+  },
+  "height": {
+    "names": [
+      {
+        "language": {
+          "name": "ja-hrkt",
+          "url": ""
+        },
+        "name": "たかさ"
+      },
+      {
+        "language": {
+          "name": "ko",
+          "url": ""
+        },
+        "name": "키"
+      },
+      {
+        "language": {
+          "name": "zh-hant",
+          "url": ""
+        },
+        "name": "高度"
+      },
+      {
+        "language": {
+          "name": "fr",
+          "url": ""
+        },
+        "name": "Taille"
+      },
+      {
+        "language": {
+          "name": "de",
+          "url": ""
+        },
+        "name": "Größe"
+      },
+      {
+        "language": {
+          "name": "es",
+          "url": ""
+        },
+        "name": "Altura"
+      },
+      {
+        "language": {
+          "name": "it",
+          "url": ""
+        },
+        "name": "Altezza"
+      },
+      {
+        "language": {
+          "name": "en",
+          "url": ""
+        },
+        "name": "Height"
+      },
+      {
+        "language": {
+          "name": "ja",
+          "url": ""
+        },
+        "name": "高さ"
+      },
+      {
+        "language": {
+          "name": "zh-hans",
+          "url": ""
+        },
+        "name": "身高"
+      },
+      {
+        "language": {
+          "name": "es-419",
+          "url": ""
+        },
+        "name": "Altura"
+      }
+    ]
+  }
+}
